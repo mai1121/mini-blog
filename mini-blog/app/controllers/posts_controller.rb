@@ -1,11 +1,15 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.all.order("id DESC")
   end
 
   def new
+    @post = Post.new
   end
 
   def create
+    @post = Post.create(post_params)
+
   end
 
   def destroy
@@ -20,7 +24,14 @@ class PostsController < ApplicationController
   def show
   end
 
+
+
  private
+
+# ストロングパラメータを設定
+ def post_params
+  params.require(:post).permit(:text)
+ end
 
 
 
