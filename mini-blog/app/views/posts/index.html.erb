@@ -1,8 +1,9 @@
 
 <div class="row">
   <% @posts.each do |post|%>
-  <%= simple_format(post.text)%>
-  <span class="name"><%= post.name %></span>
+  <div class="post-box">
+  <%= render partial: "posts", locals: { post: post}%>
+  </div>
   <% end %>
 
 <%= paginate(@posts)%>

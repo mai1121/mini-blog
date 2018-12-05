@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :move_to_index, except: :index
 
   def index
-    @posts = Post.all.order("id DESC").page(params[:page]).per(5)
+    @posts = Post.all.order("id DESC").page(params[:page]).per(5).includes(:user)
   end
 
   def new
@@ -16,12 +16,21 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    post = Post.find(params[:id])
+    if post.user_id == current_user.id
+      post.destroy
+    end
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    post = Post.find(params[:id])
+    if post.user_id == current_user.id
+      post.update(post_params)
+    end
   end
 
   def show
