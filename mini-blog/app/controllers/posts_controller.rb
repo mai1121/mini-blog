@@ -19,6 +19,9 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.user_id == current_user.id
       post.destroy
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to action: :index
     end
   end
 
@@ -30,6 +33,9 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     if post.user_id == current_user.id
       post.update(post_params)
+    else
+      flash[:notice] = "権限がありません"
+      redirect_to action: :index
     end
   end
 
