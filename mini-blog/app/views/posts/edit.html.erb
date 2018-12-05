@@ -1,0 +1,9 @@
+<div class="contents row">
+  <%= form_for @post do |f|%>
+    <h3>
+      編集する
+    </h3>
+    <%= f.text_area :text, placeholder: "入力してください", class: "form-text"%>
+    <%= f.submit "更新", class: "form-btn" %>
+  <% end %>
+</div>
