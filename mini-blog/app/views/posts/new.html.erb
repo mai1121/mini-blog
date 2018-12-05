@@ -1,11 +1,10 @@
- <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Textarea</label>
-        </div>
-      </div>
-    </form>
-  </div>
 
+<div class="contents row">
+  <%= form_for @post do |f|%>
+    <h3>
+      投稿する
+    </h3>
+    <%= f.text_area :text, placeholder: "入力してください", class: "form-text"%>
+    <%= f.submit "送信", class: "form-btn" %>
+  <% end %>
+</div>
